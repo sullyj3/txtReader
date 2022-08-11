@@ -8,11 +8,18 @@ $: if (displayText) {
 	text = shouldJoinLines ? joinLines(displayText.text) : displayText.text 
 }
 
+function joinParagraphLines(para: string): string {
+	return para.replaceAll(/\s*(\r\n?|\n)/g, " ");
+}
+function containsNonWhitespace(s: string): boolean {
+	return s.trim().length > 0;
+}
 
 const joinLines: (txt: string) => string = txt => {
-	const paragraphs = txt.split(/\n\n+/);
-	return paragraphs.map((para: string) => para.replaceAll(/ *\n/g, " "))
-									 .join("\n\n");
+	const paragraphs = txt.split(/(\r\n|\n)(\r\n?|\n)+/);
+	return paragraphs.map(joinParagraphLines)
+									 .filter(containsNonWhitespace)
+									 .join("\n\n"); 
 }
 </script>
 

@@ -1,26 +1,27 @@
 <script lang="ts">
-import type { DisplayText } from './types';
+	import type { DisplayText } from "./types";
 
-export let displayText: DisplayText;
-export let shouldJoinLines: boolean;
-let text: string;
-$: if (displayText) {
-	text = shouldJoinLines ? joinLines(displayText.text) : displayText.text 
-}
+	export let displayText: DisplayText;
+	export let shouldJoinLines: boolean;
+	let text: string;
+	$: if (displayText) {
+		text = shouldJoinLines ? joinLines(displayText.text) : displayText.text;
+	}
 
-function joinParagraphLines(para: string): string {
-	return para.replaceAll(/\s*(\r\n?|\n)/g, " ");
-}
-function containsNonWhitespace(s: string): boolean {
-	return s.trim().length > 0;
-}
+	function joinParagraphLines(para: string): string {
+		return para.replaceAll(/\s*(\r\n?|\n)/g, " ");
+	}
+	function containsNonWhitespace(s: string): boolean {
+		return s.trim().length > 0;
+	}
 
-const joinLines: (txt: string) => string = txt => {
-	const paragraphs = txt.split(/(\r\n|\n)(\r\n?|\n)+/);
-	return paragraphs.map(joinParagraphLines)
-									 .filter(containsNonWhitespace)
-									 .join("\n\n"); 
-}
+	const joinLines: (txt: string) => string = (txt) => {
+		const paragraphs = txt.split(/(\r\n|\n)(\r\n?|\n)+/);
+		return paragraphs
+			.map(joinParagraphLines)
+			.filter(containsNonWhitespace)
+			.join("\n\n");
+	};
 </script>
 
 <div id="text-display">

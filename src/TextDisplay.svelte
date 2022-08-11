@@ -41,7 +41,7 @@
 	}
 
 	#text-display {
-		width: 35em;
+		width: 40em;
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -50,7 +50,7 @@
 		word-wrap: break-word;
 		white-space: pre-wrap;
 		font-family: serif;
-		font-size: 1.15em;
-		line-height: 1.4em;
+		font-size: 1.2em;
+		line-height: 1.35em;
 	}
 </style>

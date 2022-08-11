@@ -16,6 +16,10 @@ const handlePaste = (ev: ClipboardEvent) => {
 
 </script>
 
+
+<svelte:head>
+  <title>TxtReader</title>
+</svelte:head>
 <main on:paste={handlePaste}>
 	<Menu bind:menuDisplayText={displayText} bind:menuShouldJoinLines={shouldJoinLines} />
 	<TextDisplay {displayText} {shouldJoinLines} />

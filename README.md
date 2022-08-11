@@ -1,10 +1,15 @@
 # txtReader
 
-A simple html page that displays text with nice, readable typography.
+Have you ever opened a website, looked at the text, and thought any of the following?
 
-You can choose a text file, or just paste the text in.
+- "This page is hard to read!"
+- "The lines are too long!"
+- "There's not enough contrast!"
+- "Everything's squished together!"
 
-It's nicer to read than the default page you get if you just open your text file in the browser directly.
+TxtReader is a simple page that displays plain text with nice, readable typography.
+
+Simply paste in the text you want to read. Alternatively you can choose a text file from your local machine.
 
 ## First
 

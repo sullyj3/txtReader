@@ -1,10 +1,13 @@
 <script lang="ts">
-import * as types from './types';
+	import type {DisplayText} from './types';
 
 export let menuDisplayText: DisplayText;
-export let menuShouldJoinLines: Boolean;
+export let menuShouldJoinLines: boolean;
 
-let files;
+let files: FileList;
+let fileInput: HTMLInputElement;
+
+
 $: {
 	const selectedFile = files && files[0] ? files[0] : null;
 	if (selectedFile) {
@@ -12,7 +15,7 @@ $: {
 	}
 }
 
-async function updateDisplayTextFile(f) {
+const updateDisplayTextFile = async (f: File) => {
 	menuDisplayText = {
 		type: "FileText",
 		fileName: f.name,
@@ -20,14 +23,21 @@ async function updateDisplayTextFile(f) {
 	};
 }
 
+const clear = () => {
+	menuDisplayText = null;
+	files = null;
+	fileInput.value = null;
+}
+
 </script>
 
 <div id="menu">
-	<div>
-		<input type="file" name="choose file" bind:files> <p>(Or press ctrl-V)</p> 
-	</div>
+	<span>
+		<input type="file" name="choose file" bind:files bind:this={fileInput}>
+		<p>(Or press ctrl-V)</p>
+	</span>
 	{#if menuDisplayText }
-		<button on:click={() => {menuDisplayText = null} }>Clear</button>
+		<button on:click={clear}>Clear</button>
 		<div id="join-lines">
 			<label for="join-lines">Join lines</label>
 			<input type="checkbox" bind:checked={menuShouldJoinLines}>

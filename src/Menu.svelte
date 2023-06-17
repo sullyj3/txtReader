@@ -1,8 +1,9 @@
 <script lang="ts">
-	import type { DisplayText } from "./types";
+	import type { DisplayText, Theme } from "./types";
 
 	export let menuDisplayText: DisplayText;
 	export let menuShouldJoinLines: boolean;
+	export let darkMode: boolean = false;
 
 	let files: FileList;
 	let fileInput: HTMLInputElement;
@@ -39,6 +40,10 @@
 		/>
 		<p>(Or press ctrl-V)</p>
 	</span>
+	<div id="theme-toggle">
+		<label for="theme-toggle">Dark mode</label>
+		<input type="checkbox" bind:checked={darkMode} />
+	</div>
 	{#if menuDisplayText}
 		<button on:click={clear}>Clear</button>
 		<div id="join-lines">

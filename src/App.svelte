@@ -6,6 +6,10 @@
 	let displayText: DisplayText = null;
 	let shouldJoinLines: boolean = false;
 
+	let darkMode: boolean = false;
+	let theme: Theme = "lightTheme";
+	$: theme = darkMode ? "darkTheme" : "lightTheme";
+
 	const handlePaste = (ev: ClipboardEvent) => {
 		ev.preventDefault();
 		displayText = {
@@ -13,16 +17,18 @@
 			text: ev.clipboardData.getData("text"),
 		};
 	};
+
 </script>
 
 <svelte:head>
 	<title>TxtReader</title>
 </svelte:head>
 
-<main on:paste={handlePaste}>
+<main on:paste={handlePaste} class='{theme}' >
 	<Menu
 		bind:menuDisplayText={displayText}
 		bind:menuShouldJoinLines={shouldJoinLines}
+		bind:darkMode
 	/>
 	<TextDisplay {displayText} {shouldJoinLines} />
 </main>
@@ -32,5 +38,10 @@
 		main {
 			max-width: none;
 		}
+	}
+
+	.darkTheme {
+		background-color: #222;
+		color: #eee;
 	}
 </style>

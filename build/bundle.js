@@ -1052,7 +1052,7 @@ var app = (function () {
     			t1 = space();
     			create_component(textdisplay.$$.fragment);
     			document.title = "TxtReader";
-    			attr_dev(main, "class", main_class_value = "" + (null_to_empty(/*theme*/ ctx[3]) + " svelte-hn8kni"));
+    			attr_dev(main, "class", main_class_value = "" + (null_to_empty(/*theme*/ ctx[3]) + " svelte-g4hu83"));
     			add_location(main, file, 20, 0, 475);
     		},
     		l: function claim(nodes) {
@@ -1098,7 +1098,7 @@ var app = (function () {
     			if (dirty & /*shouldJoinLines*/ 4) textdisplay_changes.shouldJoinLines = /*shouldJoinLines*/ ctx[2];
     			textdisplay.$set(textdisplay_changes);
 
-    			if (!current || dirty & /*theme*/ 8 && main_class_value !== (main_class_value = "" + (null_to_empty(/*theme*/ ctx[3]) + " svelte-hn8kni"))) {
+    			if (!current || dirty & /*theme*/ 8 && main_class_value !== (main_class_value = "" + (null_to_empty(/*theme*/ ctx[3]) + " svelte-g4hu83"))) {
     				attr_dev(main, "class", main_class_value);
     			}
     		},

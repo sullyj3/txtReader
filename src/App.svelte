@@ -40,6 +40,16 @@
 		}
 	}
 
+	:global(body) {
+		margin: 0;
+		padding: 0;
+	}
+
+	main {
+		padding: 8px;
+		height: 100%;
+	}
+
 	.darkTheme {
 		background-color: #222;
 		color: #eee;

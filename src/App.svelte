@@ -47,7 +47,7 @@
 
 	main {
 		padding: 8px;
-		height: 100%;
+		min-height: 100%;
 	}
 
 	.darkTheme {

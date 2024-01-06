@@ -37,3 +37,9 @@ npm run build
 ```
 npm run start
 ```
+
+## Deploy
+
+```
+just deploy
+```

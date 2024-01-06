@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import Menu from "./Menu.svelte";
 	import TextDisplay from "./TextDisplay.svelte";
-	import type { DisplayText } from "./types";
+	import type { DisplayText, Theme } from "./types";
 
 	let displayText: DisplayText = null;
 	let shouldJoinLines: boolean = false;
@@ -10,14 +11,26 @@
 	let theme: Theme = "lightTheme";
 	$: theme = darkMode ? "darkTheme" : "lightTheme";
 
+
 	const handlePaste = (ev: ClipboardEvent) => {
 		ev.preventDefault();
 		displayText = {
 			type: "Pasted",
 			text: ev.clipboardData.getData("text"),
 		};
+
+		// Persist displayText. This ensures that our state survives
+		// reloads and chrome's memory saver tab discarding.
+		// TODO we should persist the entire state, not just the displayText.
+		window.sessionStorage.setItem("displayText", JSON.stringify(displayText));
 	};
 
+	onMount(() => {
+		const storedText = window.sessionStorage.getItem("displayText");
+		if (storedText) {
+			displayText = JSON.parse(storedText);
+		}
+	});
 </script>
 
 <svelte:head>

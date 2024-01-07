@@ -12,3 +12,8 @@ export type FileText = {
 export type DisplayText = Pasted | FileText | null
 
 export type Theme = "lightTheme" | "darkTheme"
+
+export type MenuSetDisplayTextEvent = {
+	type: "MenuSetDisplayTextEvent";
+	displayText: DisplayText;
+}

@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { DisplayText, Theme } from "./types";
+	import type { DisplayText, MenuSetDisplayTextEvent, FileText } from "./types";
+	import { createEventDispatcher } from "svelte";
 
-	export let menuDisplayText: DisplayText;
 	export let menuShouldJoinLines: boolean;
 	export let darkMode: boolean = false;
+	export let textLoaded: boolean = false;
 
 	let files: FileList;
 	let fileInput: HTMLInputElement;
@@ -15,16 +16,20 @@
 		}
 	}
 
+	const dispatch = createEventDispatcher();
+
 	const updateDisplayTextFile = async (f: File) => {
-		menuDisplayText = {
+		const menuDisplayText: FileText = {
 			type: "FileText",
 			fileName: f.name,
 			text: await f.text(),
 		};
+		dispatch("set-display-text", { type: "MenuSetDisplayTextEvent", displayText: menuDisplayText });
 	};
 
 	const clear = () => {
-		menuDisplayText = null;
+		// menuDisplayText = null;
+		dispatch("set-display-text", { type: "MenuSetDisplayTextEvent", displayText: null });
 		files = null;
 		fileInput.value = null;
 	};
@@ -44,7 +49,7 @@
 		<label for="theme-toggle">Dark mode</label>
 		<input type="checkbox" bind:checked={darkMode} />
 	</div>
-	{#if menuDisplayText}
+	{#if textLoaded}
 		<button on:click={clear}>Clear</button>
 		<div id="join-lines">
 			<label for="join-lines">Join lines</label>
